@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;600&display=swap');
+
+/* ============================================== */
+/* GLOBAL VARIABLES & RESET                       */
+/* ============================================== */
+
+/* CSS Custom Properties for theme colors */
+:root {
+  --primary: #2f0188; /* Main brand color (dark blue) */
+  --secondary: #6699cc; /* Secondary color (light blue) */
+  --accent: #2e0188; /* Accent color (red for CTAs) */
+  --light: #f8f9fa; /* Light background color */
+  --dark: #212529; /* Dark text color */
+}
+
+/* Universal reset */
+* {
+  box-sizing: border-box; /* Include padding/border in element dimensions */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+}
+
+/* Base body styling */
+body {
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif; /* Modern font stack */
+  line-height: 1.6; /* Optimal line spacing for readability */
+  color: var(--dark); /* Set default text color */
+  background-color: var(--light); /* Page background */
+}
+
+/* ============================================== */
+/* LAYOUT & CONTAINERS                            */
+/* ============================================== */
+
+/* Main content container */
+.container {
+  max-width: 1200px; /* Maximum width for large screens */
+  margin: 0 auto; /* Horizontal centering */
+  padding: 0 1.5rem; /* Mobile-friendly side padding */
+}
+
+/* ============================================== */
+/* NAVIGATION BAR                                 */
+/* ============================================== */
+
+.navbar {
+  background: rgba(255, 255, 255); /* Semi-transparent white background */
+  padding: 1rem 0; /* Vertical padding */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky; /* Sticky positioning */
+  top: 0; /* Stick to top of viewport */
+  z-index: 1000; /* Ensure nav stays above other content */
+}
+
+/* Desktop adjustments for new wrappers */
+.nav-header {
+  display: flex;
+  align-items: center;
+}
+
+.nav-header .nav-title {
+  margin-left: 1rem; /* Adjust value as needed */
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* 
+  Add spacing between nav-links and register button inside the nav-actions container.
+  This mimics the original spacing where the nav-links and register-btn were siblings.
+*/
+.nav-actions .register-btn {
+  margin-left: 2rem;
+}
+
+.nav-title {
+  font-family: 'Roboto', sans-serif; /* Add Roboto font */
+  font-weight: 300; /* Thin weight */
+  text-transform: uppercase; /* Force uppercase */
+  letter-spacing: 1.5px; /* Improve uppercase readability */
+  color: var(--primary); /* Use primary brand color */
+  font-size: 1.75rem; /* Slightly smaller than hero heading */
+  margin-right: 2em; /* Spacing between title and nav links */
+  transition: color 0.3s ease; /* Match nav link transition */
+}
+
+.nav-title:hover {
+  color: var(--secondary); /* Interactive hover state */
+}
+
+.nav-container {
+  display: flex; /* Flexbox layout */
+  justify-content: space-between; /* Space between logo and nav items */
+  align-items: center; /* Vertical alignment */
+}
+
+.logo-container {
+  width: 60px; /* Fixed logo width */
+  height: 60px; /* Same as width to maintain perfect circle */
+  border-radius: 50%; /* Creates circle shape */
+  overflow: hidden; /* Hides overflow content */
+  border: 2px solid var(--primary); /* Brand-colored border */
+  display: flex; /* Centers the image content */
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevents circle from shrinking */
+}
+
+.logo-img {
+  width: 100%; /* Fill container width */
+  height: 100%; /* Fill container height */
+  object-fit: cover; /* Maintains aspect ratio while filling container */
+  object-position: center; /* Centers the image content */
+}
+
+.nav-links {
+  display: flex; /* Flexbox for navigation items */
+  gap: 2rem; /* Spacing between links */
+  list-style: none; /* Remove bullet points */
+}
+
+.nav-links a {
+  color: var(--dark); /* Link color */
+  text-decoration: none; /* Remove underlines */
+  font-weight: 500; /* Medium font weight */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+  color: var(--secondary); /* Hover state color */
+}
+
+/* Register button styling */
+.register-btn {
+  background: var(--accent); /* Accent color background */
+  color: white; /* White text */
+  padding: 0.75rem 1.5rem; /* Button padding */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  font-weight: 600; /* Bold text */
+  cursor: pointer; /* Pointer cursor */
+  transition: transform 0.2s; /* Hover animation */
+  white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+.register-btn:hover {
+  transform: translateY(-2px); /* Lift button on hover */
+}
+
+/* ============================================== */
+/* HERO SECTION (UPDATED)                         */
+/* ============================================== */
+
+.hero {
+  padding: 0rem 0 22rem; /* Increased vertical padding (top/bottom) */
+  color: white; /* White text for contrast */
+  text-align: center; /* Center-aligned content */
+  position: relative; /* Positioning context */
+  background-size: cover; /* Full background coverage */
+  background-position: top; /* Align image to top */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  min-height: 90vh; /* Minimum viewport height */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertical centering */
+}
+
+/* Dark overlay for text readability */
+.hero::before {
+  content: ''; /* Required for pseudo-element */
+  position: absolute; /* Cover entire hero */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 1; /* Place below content */
+}
+
+.hero-container {
+  position: relative; /* Positioning context */
+  z-index: 2; /* Ensure content stays above overlay */
+}
+
+.hero h1 {
+  font-weight: 800;
+  font-size: 3rem; /* Large heading size */
+  margin-bottom: 2rem; /* Spacing below heading */
+  line-height: 1.2; /* Tighter line height */
+  max-width: 800px; /* Optimal reading width */
+  margin: 0 auto 2rem; /* Centered alignment */
+}
+
+.hero-date {
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Horizontal alignment */
+  gap: 0.5rem; /* Spacing between elements */
+  font-size: 1.25rem; /* Date text size */
+  margin-bottom: 3rem; /* Spacing below date */
+}
+
+/* ============================================== */
+/* CONTENT SECTIONS                               */
+/* ============================================== */
+
+.section {
+  padding: 4rem 0; /* Section vertical spacing */
+}
+
+/* Section heading styling */
+h2 {
+  font-weight: 800; /* Medium weight */
+  font-size: 2rem; /* Heading size */
+  color: var(--primary); /* Brand color */
+  margin-bottom: 2rem; /* Spacing below heading */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertical alignment */
+  gap: 0.75rem; /* Icon/text spacing */
+}
+
+/* Content card styling */
+.content-card,
+.day-card,
+.venue-card {
+  background: white; /* White background */
+  padding: 2rem; /* Internal spacing */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  margin: 2rem 0; /* External spacing */
+}
+
+/* Objectives list styling */
+.objectives-list {
+  list-style: none; /* Remove bullet points */
+}
+
+.objectives-list li {
+  padding: 1rem; /* Item padding */
+  margin: 0.5rem 0; /* Item spacing */
+  background: var(--light); /* Light background */
+  border-left: 3px solid var(--secondary); /* Accent border */
+}
+
+/* ============================================== */
+/* SCHEDULE COMPONENTS                            */
+/* ============================================== */
+
+.schedule-grid {
+  display: grid; /* Grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 2rem; /* Grid spacing */
+}
+
+.timeline {
+  list-style: none; /* Remove bullet points */
+}
+
+.timeline li {
+  padding: 1rem 0; /* Item spacing */
+  border-bottom: 1px solid #eee; /* Divider line */
+  display: grid; /* Grid layout */
+  grid-template-columns: 100px 1fr; /* Time/content columns */
+  gap: 1rem; /* Column spacing */
+}
+
+time {
+  color: var(--secondary); /* Time color */
+  font-weight: 500; /* Medium weight */
+}
+
+/* ============================================== */
+/* VENUE SECTION                                  */
+/* ============================================== */
+
+.map-container {
+  position: relative; /* Positioning context */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0; /* Height control */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  margin-top: 1.5rem; /* Top spacing */
+}
+
+.map-container iframe {
+  position: absolute; /* Absolute positioning */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  border: 0; /* Remove iframe border */
+}
+
+/* ============================================== */
+/* FOOTER                                         */
+/* ============================================== */
+
+.footer {
+  background: var(--primary); /* Brand color background */
+  color: white; /* White text */
+  text-align: center; /* Centered content */
+  padding: 2rem 0; /* Vertical padding */
+  margin-top: 4rem; /* Top spacing */
+}
+
+.footer a {
+  color: inherit; /* Inherit text color from parent */
+  /* Remove underline */
+  transition: opacity 0.2s ease; /* Add subtle hover effect */
+}
+
+.footer a:hover {
+  opacity: 0.9; /* Slight transparency on hover */
+}
+
+/* ============================================== */
+/* REGISTRATION FORMS                             */
+/* ============================================== */
+
+.registration-form {
+  display: flex; /* Flexbox layout */
+  gap: 0.5rem; /* Element spacing */
+}
+
+.email-input {
+  padding: 0.5rem; /* Input padding */
+  border: 1px solid var(--secondary); /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  width: 200px; /* Fixed width */
+}
+
+.subscribe-btn {
+  background: var(--accent); /* Accent color */
+  color: white; /* White text */
+  padding: 0.5rem 1rem; /* Button padding */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+}
+
+/* Hero-specific registration */
+.hero-registration {
+  max-width: 500px; /* Form width limit */
+  margin: 2rem auto 0; /* Centered alignment */
+  display: flex; /* Flexbox layout */
+  gap: 1rem; /* Element spacing */
+}
+
+.hero-email-input {
+  flex: 1; /* Take available space */
+  padding: 1rem; /* Input padding */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1rem; /* Text size */
+}
+
+.hero-subscribe-btn {
+  background: var(--light); /* Light background */
+  color: var(--primary); /* Brand text color */
+  padding: 1rem 2rem; /* Button padding */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  font-weight: 600; /* Bold text */
+  cursor: pointer; /* Pointer cursor */
+  transition: transform 0.2s; /* Hover animation */
+}
+
+/* ============================================== */
+/* RESPONSIVE MEDIA QUERIES                       */
+/* ============================================== */
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem; /* Ensure consistent base size */
+  }
+
+  h2 svg {
+    width: 1.25em; /* Slightly larger relative size for mobile */
+    height: 1.25em;
+    flex-shrink: 0; /* Prevent icon shrinking in flex layout */
+  }
+
+  .nav-title {
+    font-size: 1.2rem; /* Scale down for mobile */
+    margin-right: 0; /* Remove right margin in stacked layout */
+    margin-bottom: 0.2rem; /* Add spacing in column layout */
+  }
+  .nav-container {
+    flex-direction: column; /* Stack nav elements */
+    gap: 0.5rem; /* Vertical spacing */
+  }
+
+  .hero {
+    padding: 8rem 0 5rem; /* Adjusted mobile padding */
+    min-height: 70vh; /* Reduced height on mobile */
+  }
+
+  .hero h1 {
+    font-size: 2rem; /* Smaller heading */
+    padding: 0 1rem; /* Horizontal padding */
+  }
+
+  .schedule-grid {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .hero-registration {
+    flex-direction: column; /* Stack form elements */
+  }
+
+  .registration-form {
+    display: none; /* Hide nav form on mobile */
+  }
+  .nav-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem; /* Adjust spacing between logo and title as needed */
+  }
+
+  .nav-title {
+    margin-bottom: 0; /* Remove bottom margin for a horizontal layout */
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem; /* Adjust spacing as needed */
+  }
+
+  /* You can adjust spacing or styles for nav-links and register-btn if necessary */
+  .nav-links {
+    margin: 0; /* Remove extra margins if any */
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+
+  .nav-links li {
+    margin-right: 0.1rem; /* Optional: add spacing between links */
+  }
+}
+
+/* ============================================== */
+/* RESPONSIVE MEDIA QUERIES FOR VERY SMALL SCREENS  */
+/* ============================================== */
+
+@media (max-width: 480px) {
+  /* Ensure the container has sufficient horizontal padding */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Make the nav-actions container full-width with extra padding */
+  .nav-actions {
+    width: 100%;
+    padding: 1 1rem; /* Extra left/right padding */
+    justify-content: space-between; /* Distribute space between links and button */
+  }
+
+  /* Adjust the nav-links */
+  .nav-links {
+    flex-grow: 1;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    gap: 1rem; /* Reduce gap between links */
+    margin: 0; /* Remove extra margin */
+    padding: 0; /* Remove internal padding */
+  }
+
+  /* Remove extra margin on list items to prevent overflow */
+
+  /* Ensure the register button doesn’t add extra left margin in this view */
+  .nav-actions .register-btn {
+    margin-left: 0;
+  }
+}
