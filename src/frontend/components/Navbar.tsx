@@ -11,7 +11,6 @@ const data = {
     { name: 'Schedule', sectionId: 'schedule' },
     { name: 'Venue', sectionId: 'venue' },
   ],
-  buttonText: 'Register Now',
 }
 
 const handleScroll = (sectionId: string) => {
@@ -127,9 +126,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <button className="register-btn" onClick={() => handleScroll('hero')}>
-            {data.buttonText}
-          </button>
         </div>
       </div>
     </nav>
