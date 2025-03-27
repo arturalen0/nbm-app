@@ -290,8 +290,6 @@ export interface HeroSection {
   title: string;
   date: string;
   location: string;
-  emailPlaceholder: string;
-  buttonText: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -357,8 +355,6 @@ export interface HeroSectionSelect<T extends boolean = true> {
   title?: T;
   date?: T;
   location?: T;
-  emailPlaceholder?: T;
-  buttonText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

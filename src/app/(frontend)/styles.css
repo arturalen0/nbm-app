@@ -158,14 +158,14 @@ body {
 /* ============================================== */
 
 .hero {
-  padding: 0rem 0 22rem; /* Increased vertical padding (top/bottom) */
+  padding: 0rem 0 10rem; /* Increased vertical padding (top/bottom) */
   color: white; /* White text for contrast */
   text-align: center; /* Center-aligned content */
   position: relative; /* Positioning context */
   background-size: cover; /* Full background coverage */
-  background-position: top; /* Align image to top */
+  background-position: center; /* Align image to top */
   background-repeat: no-repeat; /* Prevent image repetition */
-  min-height: 90vh; /* Minimum viewport height */
+  min-height: 75vh; /* Minimum viewport height */
   display: flex; /* Flexbox layout */
   align-items: center; /* Vertical centering */
 }
@@ -178,7 +178,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent overlay */
   z-index: 1; /* Place below content */
 }
 

@@ -32,10 +32,7 @@ export default function Hero({ data }: { data: HeroSection }) {
         <p className="hero-date">
           <FaCalendarAlt /> {data.date} &nbsp; | &nbsp; <FaMapMarkerAlt /> {data.location}
         </p>
-        <div className="hero-registration">
-          <input type="email" placeholder={data.emailPlaceholder} className="hero-email-input" />
-          <button className="hero-subscribe-btn">{data.buttonText}</button>
-        </div>
+        <div className="hero-registration"></div>
       </div>
     </section>
   )

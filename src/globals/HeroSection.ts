@@ -32,17 +32,5 @@ export const HeroSection: GlobalConfig = {
       defaultValue: 'Tallinn, Estonia',
       required: true,
     },
-    {
-      name: 'emailPlaceholder',
-      type: 'text',
-      defaultValue: 'example@nbm.eu',
-      required: true,
-    },
-    {
-      name: 'buttonText',
-      type: 'text',
-      defaultValue: 'Register Now',
-      required: true,
-    },
   ],
 }
