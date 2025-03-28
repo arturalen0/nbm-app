@@ -82,7 +82,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     'hero-section': HeroSection;
@@ -128,7 +128,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -145,7 +145,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -164,20 +164,20 @@ export interface Media {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -187,10 +187,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -210,7 +210,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -286,7 +286,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "hero-section".
  */
 export interface HeroSection {
-  id: string;
+  id: number;
   title: string;
   date: string;
   location: string;
@@ -298,7 +298,7 @@ export interface HeroSection {
  * via the `definition` "about-section".
  */
 export interface AboutSection {
-  id: string;
+  id: number;
   title: string;
   subtitle: string;
   dateLocation: string;
@@ -316,7 +316,7 @@ export interface AboutSection {
  * via the `definition` "schedule-section".
  */
 export interface ScheduleSection {
-  id: string;
+  id: number;
   title: string;
   days?:
     | {
@@ -337,7 +337,7 @@ export interface ScheduleSection {
  * via the `definition` "venue-section".
  */
 export interface VenueSection {
-  id: string;
+  id: number;
   title: string;
   venue: {
     name: string;
