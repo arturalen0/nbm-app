@@ -23,7 +23,7 @@ export default function About({ data }: { data: AboutSection }) {
                   {/* Render the paragraph text */}
                   {paragraph.item}
                   {/* Add two <br> tags if it's NOT the last item */}
-                  {index < data.content.length - 1 && (
+                  {data.content && index < data.content.length - 1 && (
                     <>
                       <br />
                       <br />
