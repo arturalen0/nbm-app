@@ -301,7 +301,6 @@ export interface AboutSection {
   id: number;
   title: string;
   subtitle: string;
-  dateLocation: string;
   content?:
     | {
         item?: string | null;
@@ -366,7 +365,6 @@ export interface HeroSectionSelect<T extends boolean = true> {
 export interface AboutSectionSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
-  dateLocation?: T;
   content?:
     | T
     | {

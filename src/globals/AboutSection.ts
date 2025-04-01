@@ -60,14 +60,7 @@ export const AboutSection: GlobalConfig = {
       name: 'subtitle',
       type: 'text',
       defaultValue:
-        'The Estonian Young Academy of Sciences invites you to the annual Nordic-Baltic Young Academies Meeting (NBM) in Tallinn, Estonia',
-      required: true,
-    },
-    {
-      name: 'dateLocation',
-      type: 'text',
-      defaultValue:
-        "May 8–9, 2025 held at the Estonian Academy of Sciences in Tallinn's medieval Old Town.",
+        "The Estonian Young Academy of Sciences invites you to the annual Nordic-Baltic Young Academies Meeting (NBM) in Tallinn, Estonia May 8–9, 2025 held at the Estonian Academy of Sciences in Tallinn's medieval Old Town.",
       required: true,
     },
     {

@@ -12,12 +12,8 @@ export default function About({ data }: { data: AboutSection }) {
         </h2>
         <div className="nbm-2025-container">
           <header>
-            <p className="subtitle">
-              {data.subtitle}
-              <br />
-              <strong>{data.dateLocation}</strong>
-            </p>
-            <br />
+            <p className="subtitle">{data.subtitle}</p>
+
             {data.content &&
               data.content.map((paragraph, index) => <p key={index}>{paragraph.item}</p>)}
           </header>
