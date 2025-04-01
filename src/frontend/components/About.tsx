@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react'
 import { AboutSection } from '@/payload-types'
 import { FaUsers } from 'react-icons/fa'
 
@@ -13,9 +13,24 @@ export default function About({ data }: { data: AboutSection }) {
         <div className="nbm-2025-container">
           <header>
             <p className="subtitle">{data.subtitle}</p>
+            <br />
 
             {data.content &&
-              data.content.map((paragraph, index) => <p key={index}>{paragraph.item}</p>)}
+              data.content.length > 0 &&
+              data.content.map((paragraph, index) => (
+                // Use React.Fragment to group elements without adding a div
+                <React.Fragment key={index}>
+                  {/* Render the paragraph text */}
+                  {paragraph.item}
+                  {/* Add two <br> tags if it's NOT the last item */}
+                  {index < data.content.length - 1 && (
+                    <>
+                      <br />
+                      <br />
+                    </>
+                  )}
+                </React.Fragment>
+              ))}
           </header>
         </div>
       </div>
