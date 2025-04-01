@@ -71,19 +71,48 @@ export const ScheduleSection: GlobalConfig = {
         },
         {
           name: 'events',
+          label: 'Events for this Day',
           type: 'array',
           required: true,
+          minRows: 1,
           fields: [
             {
               name: 'time',
               type: 'text',
               required: true,
+              admin: {
+                width: '30%', // Adjust admin UI layout
+              },
             },
             {
               name: 'title',
               type: 'text',
               required: true,
+              admin: {
+                width: '70%', // Adjust admin UI layout
+              },
             },
+            // --- Start: New Optional Bullet Points Field ---
+            {
+              name: 'details', // Changed name to 'details' - more general
+              label: 'Optional Details / Bullet Points',
+              type: 'array',
+              // No 'required: true' here, making the whole list optional
+              fields: [
+                {
+                  name: 'point',
+                  label: 'Bullet Point',
+                  type: 'text',
+                  required: true, // Each individual point needs text
+                },
+              ],
+              admin: {
+                // Optional: Add description for CMS user
+                description:
+                  'Add bullet points or details for this event item. Leave empty if not needed.',
+              },
+            },
+            // --- End: New Optional Bullet Points Field ---
           ],
         },
       ],

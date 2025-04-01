@@ -323,6 +323,15 @@ export interface ScheduleSection {
         events: {
           time: string;
           title: string;
+          /**
+           * Add bullet points or details for this event item. Leave empty if not needed.
+           */
+          details?:
+            | {
+                point: string;
+                id?: string | null;
+              }[]
+            | null;
           id?: string | null;
         }[];
         id?: string | null;
@@ -390,6 +399,12 @@ export interface ScheduleSectionSelect<T extends boolean = true> {
           | {
               time?: T;
               title?: T;
+              details?:
+                | T
+                | {
+                    point?: T;
+                    id?: T;
+                  };
               id?: T;
             };
         id?: T;

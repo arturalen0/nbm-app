@@ -163,6 +163,7 @@ body {
   min-height: 67vh;
   display: flex;
   align-items: center;
+  justify-content: center; /* Added for centering content */
 }
 
 /* New hero-background styling for the Next.js Image component */
@@ -271,18 +272,53 @@ h2 {
   list-style: none;
 }
 
+/* Style for each main event item in the timeline */
 .timeline li {
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 100px 1fr; /* Time column | Title/Details column */
   gap: 1rem;
+  align-items: start; /* Align items to the start of the grid cell vertically */
 }
 
+/* Style for the time element */
 time {
   color: var(--secondary);
   font-weight: 500;
+  padding-top: 0.1em; /* Optional: slight alignment adjustment */
 }
+
+/* Style for the div containing the event title and optional details */
+.timeline li > div {
+  /* This div ensures title and details stay in the second grid column */
+}
+
+/* --- Start: New Styles for Optional Event Details --- */
+
+/* Style for the optional details/bullet points list */
+.event-details {
+  list-style: disc; /* Use standard bullet points */
+  margin-top: 0.5rem; /* Space between event title and details list */
+  margin-left: 1.2rem; /* Indentation for the bullets */
+  padding-left: 0.8rem; /* Optional additional padding */
+  font-size: 0.9em; /* Make details slightly smaller than the title */
+  color: #555; /* Slightly muted text color */
+  font-weight: 400; /* Normal font weight */
+}
+
+/* Style for individual detail points (list items within the details list) */
+.event-details li {
+  padding: 0.15rem 0; /* Small vertical spacing between points */
+  border-bottom: none; /* IMPORTANT: Override the border inherited from the parent .timeline li */
+  /* Reset any potentially inherited grid styles */
+  display: list-item; /* Ensure it behaves like a normal list item */
+  grid-template-columns: none;
+  gap: 0;
+  align-items: initial; /* Reset alignment */
+}
+
+/* --- End: New Styles for Optional Event Details --- */
 
 /* ============================================== */
 /* VENUE SECTION                                  */
@@ -420,29 +456,37 @@ time {
     grid-template-columns: 1fr;
   }
 
+  /* Adjust timeline grid for smaller screens if needed */
+  .timeline li {
+    grid-template-columns: 80px 1fr; /* Slightly less space for time */
+    gap: 0.75rem;
+  }
+
   .hero-registration {
     flex-direction: column;
   }
 
   .registration-form {
-    display: none;
+    display: none; /* Hides the non-hero form */
   }
+
   .nav-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-  }
-
-  .nav-title {
-    margin-bottom: 0;
+    width: 100%; /* Ensure header takes full width */
+    justify-content: center; /* Center logo and title */
   }
 
   .nav-actions {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center; /* Center actions below header */
     gap: 1rem;
+    width: 100%; /* Take full width */
+    margin-top: 0.5rem; /* Space between header and actions */
   }
 
   .nav-links {
@@ -450,10 +494,13 @@ time {
     padding: 0;
     display: flex;
     list-style: none;
+    gap: 1.5rem; /* Adjust gap for smaller screens */
+    justify-content: center; /* Center nav links */
+    flex-wrap: wrap; /* Allow wrapping */
   }
 
-  .nav-links li {
-    margin-right: 0.1rem;
+  .nav-actions .register-btn {
+    margin-left: 0; /* Remove left margin on mobile */
   }
 }
 
@@ -463,27 +510,49 @@ time {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1rem; /* Slightly less padding */
+  }
+
+  .nav-header {
+    /* Adjust gap or specific element sizes if needed */
   }
 
   .nav-actions {
-    width: 100%;
-    padding: 1 1rem;
-    justify-content: space-between;
+    flex-direction: column; /* Stack actions vertically */
+    gap: 1rem;
+    align-items: stretch; /* Make items fill width */
   }
 
   .nav-links {
-    flex-grow: 1;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
+    gap: 1rem; /* Reduce gap further */
+    justify-content: center;
   }
 
   .nav-actions .register-btn {
-    margin-left: 0;
+    width: 100%; /* Make button full width */
+    text-align: center;
   }
-}
-.hero {
-  justify-content: center;
+
+  .hero h1 {
+    font-size: 1.8rem; /* Further reduce hero title size */
+  }
+
+  .hero-date {
+    font-size: 1.1rem;
+  }
+
+  .hero-registration {
+    padding: 0 1rem; /* Add padding to contain elements */
+  }
+
+  .timeline li {
+    grid-template-columns: 65px 1fr; /* Even less space for time */
+    gap: 0.5rem;
+  }
+
+  /* Reduce bullet point indentation on smallest screens */
+  .event-details {
+    margin-left: 0.8rem;
+    padding-left: 0.5rem;
+  }
 }
