@@ -102,7 +102,7 @@ export const ScheduleSection: GlobalConfig = {
                 {
                   name: 'point',
                   label: 'Bullet Point',
-                  type: 'text',
+                  type: 'textarea',
                   required: true, // Each individual point needs text
                 },
               ],
