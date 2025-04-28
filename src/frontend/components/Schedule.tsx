@@ -2,6 +2,7 @@
 
 import { ScheduleSection } from '@/payload-types' // Assuming this type includes the 'details' field after generation
 import { FaClock } from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown'
 
 // --- Type Definitions ---
 // It's best if these types come directly from your generated Payload types.
@@ -41,8 +42,12 @@ const TimelineItem = ({ time, title, details }: TimelineItemProps) => (
       {details && details.length > 0 && (
         <ul className="event-details">
           {details.map((detail) => (
-            // Use detail.id as key if available, otherwise fallback to point (ensure points are unique enough or use index)
-            <li key={detail.id || detail.point}>{detail.point}</li>
+            // Use detail.id as key if available, otherwise fallback to point
+            <li key={detail.id || detail.point}>
+              {/* Use ReactMarkdown to render the point content */}
+              {/* Ensure detail.point is a string before passing */}
+              {typeof detail.point === 'string' && <ReactMarkdown>{detail.point}</ReactMarkdown>}
+            </li>
           ))}
         </ul>
       )}
