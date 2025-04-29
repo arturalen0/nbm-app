@@ -7,7 +7,7 @@
 :root {
   --primary: #2f0188;
   --secondary: #6699cc;
-  --accent: #2e0188; /* Using primary for now */
+  --accent: #2e0188;
   --light: #f8f9fa;
   --dark: #212529;
 }
@@ -16,10 +16,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -31,11 +27,10 @@ body {
   line-height: 1.6;
   color: var(--dark);
   background-color: var(--light);
-  overflow-x: hidden; /* Prevent accidental horizontal scroll */
+  overflow-x: hidden; /* Add globally as a safeguard */
 }
 
 p {
-  /* Add base paragraph margin */
   margin-bottom: 1em;
 }
 p:last-child {
@@ -48,11 +43,9 @@ p:last-child {
 
 .container {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%; /* Ensure container uses full width */
 }
 
 /* ============================================== */
@@ -60,8 +53,8 @@ p:last-child {
 /* ============================================== */
 
 .navbar {
-  background: white;
-  padding: 0.75rem 0;
+  background: white; /* Solid white */
+  padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -69,24 +62,42 @@ p:last-child {
   width: 100%;
 }
 
+.nav-header {
+  display: flex;
+  align-items: center;
+}
+.nav-header .nav-title {
+  margin-left: 1rem;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+.nav-actions .register-btn {
+  margin-left: 2rem;
+}
+.nav-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  font-size: 1.75rem;
+  margin-right: 2em;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+.nav-title:hover {
+  color: var(--secondary);
+}
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
-
-.nav-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-shrink: 0;
-}
-
 .logo-container {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--primary);
@@ -95,95 +106,58 @@ p:last-child {
   align-items: center;
   flex-shrink: 0;
 }
-
 .logo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
-
-.nav-title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--primary);
-  font-size: 1.5rem;
-  margin: 0;
-  white-space: nowrap;
-  transition: color 0.3s ease;
-}
-.nav-title:hover {
-  color: var(--secondary);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
-  justify-content: center;
 }
-
 .nav-links a {
   color: var(--dark);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
   white-space: nowrap;
-  display: block;
-  padding: 0.25rem 0;
 }
 .nav-links a:hover {
   color: var(--secondary);
 }
-
 .register-btn {
   background: var(--accent);
   color: white;
-  padding: 0.6rem 1.2rem;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    background-color 0.2s;
+  transition: transform 0.2s;
   white-space: nowrap;
   text-decoration: none;
-  display: inline-block;
 }
 .register-btn:hover {
   transform: translateY(-2px);
-  background-color: color-mix(in srgb, var(--accent) 90%, black);
 }
 
 /* ============================================== */
-/* HERO SECTION                                   */
+/* HERO SECTION (UPDATED)                         */
 /* ============================================== */
 
 .hero {
-  padding: 4rem 0 6rem;
+  padding: 4rem 0 8rem;
   color: white;
   text-align: center;
   position: relative;
-  min-height: 60vh;
+  min-height: 67vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-
 .hero-background {
   position: absolute;
   top: 0;
@@ -196,7 +170,6 @@ p:last-child {
   object-fit: cover;
   object-position: center;
 }
-
 .hero::before {
   content: '';
   position: absolute;
@@ -207,31 +180,28 @@ p:last-child {
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
-
 .hero-container {
   position: relative;
   z-index: 2;
   width: 100%;
   padding: 0 1.5rem;
 }
-
 .hero h1 {
   font-weight: 800;
   font-size: clamp(2rem, 6vw, 3rem);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   line-height: 1.2;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .hero-date {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-size: clamp(1rem, 4vw, 1.25rem);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 /* ============================================== */
@@ -239,9 +209,8 @@ p:last-child {
 /* ============================================== */
 
 .section {
-  padding: 3rem 0;
+  padding: 4rem 0;
 }
-
 h2 {
   font-weight: 800;
   font-size: clamp(1.5rem, 5vw, 2rem);
@@ -251,14 +220,12 @@ h2 {
   align-items: center;
   gap: 0.75rem;
 }
-
 h3 {
   font-weight: 600;
   font-size: clamp(1.2rem, 4vw, 1.5rem);
   color: var(--dark);
   margin-bottom: 1.5rem;
 }
-
 .content-card,
 .day-card,
 .venue-card {
@@ -268,7 +235,6 @@ h3 {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
   margin-bottom: 2rem;
 }
-
 .objectives-list {
   list-style: none;
   padding-left: 0;
@@ -290,12 +256,10 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
 }
-
 .timeline {
   list-style: none;
   padding-left: 0;
 }
-
 .timeline li {
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
@@ -307,7 +271,6 @@ h3 {
 .day-card .timeline li:last-child {
   border-bottom: none;
 }
-
 .timeline time {
   color: var(--secondary);
   font-weight: 600;
@@ -315,11 +278,12 @@ h3 {
   white-space: nowrap;
   font-size: 0.95em;
 }
-
 .timeline li > div {
-  font-weight: 600;
+  /* Container for title AND details */
+  font-weight: 600; /* Applies to title */
   color: var(--dark);
   line-height: 1.4;
+  /* Make sure the container itself can break words if needed */
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -330,12 +294,11 @@ h3 {
   margin-top: 0.75em;
   margin-left: 1.2rem;
   padding-left: 0.8rem;
-  font-size: 0.95em;
+  font-size: 0.95em; /* Relative to parent div */
   color: #333;
-  font-weight: 400;
+  font-weight: 400; /* Reset weight for details */
   line-height: 1.6;
 }
-
 .event-details li {
   padding: 0.15rem 0;
   border-bottom: none;
@@ -343,15 +306,16 @@ h3 {
   grid-template-columns: none;
   gap: 0;
   align-items: initial;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.5em;
+  /* Add wrapping here too */
   overflow-wrap: break-word;
   word-break: break-word;
 }
-
 .event-details li p {
-  margin-bottom: 1em; /* Desktop paragraph spacing */
+  margin-bottom: 1em;
   margin-top: 0;
   line-height: 1.6;
+  /* Add wrapping here too */
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -363,15 +327,16 @@ h3 {
 .timeline .event-details li a {
   color: var(--primary);
   font-weight: 500;
-  text-decoration: none; /* No underline */
+  text-decoration: none;
   transition: color 0.2s ease;
+  /* Add wrapping here too */
   overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
 }
 .timeline .event-details li a:hover {
   color: var(--secondary);
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
 /* ============================================== */
@@ -425,7 +390,6 @@ h3 {
 .registration-form {
   display: none;
 }
-
 .hero-registration {
   max-width: 500px;
   margin: 2rem auto 0;
@@ -467,175 +431,199 @@ h3 {
 /* ============================================== */
 
 @media (max-width: 768px) {
-  /* --- Inherited Mobile Styles (Nav, Hero, etc.) --- */
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  /* Original Mobile Styles for Nav, Hero, etc. */
+  h2 {
+    font-size: 1.5rem;
+  }
+  h2 svg {
+    width: 1.25em;
+    height: 1.25em;
+    flex-shrink: 0;
+  }
+  .nav-title {
+    font-size: 1.2rem;
+    margin-right: 0;
+    margin-bottom: 0.2rem;
+    white-space: normal; /* <<< ALLOW TEXT WRAPPING */
+    text-align: center;
   }
   .nav-container {
     flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .nav-header {
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-  .nav-actions {
-    width: 100%;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .nav-links {
-    justify-content: center;
-    gap: 1rem 1.5rem;
-  }
-  .nav-actions .register-btn {
-    margin-left: 0;
-    padding: 0.5rem 1rem;
+    gap: 0.5rem;
   }
   .hero {
-    padding: 3rem 0 5rem;
-    min-height: 45vh;
+    padding: 4rem 0 6rem;
+    min-height: 50vh;
+    justify-content: center;
   }
   .hero h1 {
-    max-width: 90%;
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    line-height: 1.3;
+  }
+  .schedule-grid {
+    grid-template-columns: 1fr;
   }
   .hero-registration {
     flex-direction: column;
-    align-items: stretch;
-    width: 90%;
-    max-width: 400px;
   }
-  .schedule-grid {
-    grid-template-columns: 1fr; /* Ensure single column layout */
+  .registration-form {
+    display: none;
   }
+  .nav-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .nav-links {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-actions .register-btn {
+    margin-left: 0;
+  }
+  .container {
+    padding: 0 1rem;
+  } /* Added from previous mobile version */
 
-  /* --- START: Targeted Mobile Schedule Fixes (768px) --- */
+  /* --- START: Schedule Fixes for 768px --- */
   .timeline li {
-    /* Flexible time column using 'auto' */
+    /* Use auto 1fr for flexible columns */
     grid-template-columns: auto 1fr;
-    gap: 0.75rem 1rem; /* Adjust row/column gap */
-    align-items: flex-start; /* Align items to top */
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    /* Keep original gap */
+    gap: 0.75rem;
+    /* Ensure vertical alignment */
+    align-items: flex-start;
+    padding: 0.75rem 0; /* Adjust padding slightly */
   }
 
   .timeline time {
-    white-space: nowrap;
-    font-size: 0.9em;
-    padding-top: 0.1em; /* Tiny adjustment if needed */
+    font-size: 0.9em; /* Adjust size if needed */
+    padding-top: 0.1em; /* Tiny alignment adjustment */
   }
 
+  /* Ensure the container div wraps and doesn't exceed width */
   .timeline li > div {
-    /* Ensure content wrapping */
+    max-width: 100%; /* Prevent div from exceeding grid column */
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
   }
 
-  .event-details {
-    margin-left: 0.5rem; /* Reduce indentation */
-    padding-left: 1rem; /* Keep padding for bullet */
-    font-size: 0.9em;
-  }
-
-  .event-details li {
-    margin-bottom: 0.5em;
-    /* Ensure list items allow wrapping */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
+  /* Ensure details elements wrap */
+  .event-details li,
   .event-details li p,
   .event-details li a {
-    /* Ensure paragraphs and links inside details wrap */
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
+    max-width: 100%; /* Ensure list items/paras don't overflow */
+  }
+  .event-details {
+    font-size: 0.9em; /* Adjust details font size */
+    margin-left: 0.75rem; /* Adjust indentation */
+    padding-left: 0.75rem;
   }
   .event-details li p {
-    margin-bottom: 0.75em; /* Adjust paragraph spacing for mobile */
+    margin-bottom: 0.75em; /* Adjust paragraph spacing */
   }
-  /* --- END: Targeted Mobile Schedule Fixes (768px) --- */
+  /* --- END: Schedule Fixes for 768px --- */
 }
 
 @media (max-width: 480px) {
-  /* --- Inherited Mobile Styles (Nav, Hero, etc.) --- */
-  body {
-    line-height: 1.5;
-  }
+  /* Original Mobile Styles for Nav, Hero, etc. */
   .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding: 0 1rem;
   }
-  .nav-title {
-    font-size: 1.3rem;
+  .nav-header {
   }
   .nav-actions {
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
+    align-items: stretch;
   }
   .nav-links {
-    gap: 0.5rem 1rem;
+    gap: 1rem;
+    justify-content: center;
   }
-  .register-btn {
-    width: 80%;
-    max-width: 250px;
+  .nav-actions .register-btn {
+    width: 100%;
     text-align: center;
-    padding: 0.7rem 1rem;
   }
-  .hero {
-    padding: 2.5rem 0 4rem;
+  .hero h1 {
+    font-size: 1.8rem;
   }
   .hero-date {
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
   }
-  .content-card,
-  .day-card,
-  .venue-card {
-    padding: 1.25rem;
+  .hero-registration {
+    padding: 0 1rem;
   }
 
-  /* --- START: Targeted Mobile Schedule Fixes (480px) --- */
+  /* --- START: Schedule Fixes for 480px --- */
   .timeline li {
-    /* Keep flexible time column, reduce gap further */
+    /* Use auto 1fr for flexible columns */
     grid-template-columns: auto 1fr;
-    gap: 0.5rem 0.75rem;
-    align-items: flex-start;
+    /* Keep original gap */
+    gap: 0.5rem;
+    align-items: flex-start; /* Ensure top alignment */
   }
 
   .timeline time {
-    font-size: 0.85em; /* Even smaller time */
+    font-size: 0.85em; /* Smaller time */
   }
 
+  /* Ensure the container div wraps and doesn't exceed width */
   .timeline li > div {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
     font-size: 0.95em; /* Slightly smaller title */
-    /* Wrapping rules inherited */
   }
 
+  /* Keep original indentation */
   .event-details {
-    margin-left: 0.25rem; /* Minimal indentation */
-    padding-left: 1rem; /* Keep space for bullet */
-    font-size: 0.85em; /* Smaller details text */
+    margin-left: 0.8rem;
+    padding-left: 0.5rem;
+    font-size: 0.9em; /* Adjust details font size */
   }
 
-  .event-details li {
-    margin-bottom: 0.4em;
-    /* Wrapping rules inherited */
-  }
-
+  /* Keep original paragraph margin */
   .event-details li p {
-    margin-bottom: 0.5em; /* Reduce space between paragraphs */
-    /* Wrapping rules inherited */
+    margin-bottom: 0.8em;
   }
-  /* --- END: Targeted Mobile Schedule Fixes (480px) --- */
+
+  /* Ensure details elements wrap */
+  .event-details li,
+  .event-details li p,
+  .event-details li a {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  /* --- END: Schedule Fixes for 480px --- */
 }
