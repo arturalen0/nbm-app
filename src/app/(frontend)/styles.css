@@ -4,23 +4,24 @@
 /* GLOBAL VARIABLES & RESET                       */
 /* ============================================== */
 
-/* CSS Custom Properties for theme colors */
 :root {
-  --primary: #2f0188; /* Main brand color (dark blue) */
-  --secondary: #6699cc; /* Secondary color (light blue) */
-  --accent: #2e0188; /* Accent color (red for CTAs) */
-  --light: #f8f9fa; /* Light background color */
-  --dark: #212529; /* Dark text color */
+  --primary: #2f0188;
+  --secondary: #6699cc;
+  --accent: #2e0188; /* Using primary for now */
+  --light: #f8f9fa;
+  --dark: #212529;
 }
 
-/* Universal reset - Sets base styles, including removing default margins */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Base body styling */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family:
     'Segoe UI',
@@ -30,17 +31,28 @@ body {
   line-height: 1.6;
   color: var(--dark);
   background-color: var(--light);
+  overflow-x: hidden; /* Prevent accidental horizontal scroll */
+}
+
+p {
+  /* Add base paragraph margin */
+  margin-bottom: 1em;
+}
+p:last-child {
+  margin-bottom: 0;
 }
 
 /* ============================================== */
 /* LAYOUT & CONTAINERS                            */
 /* ============================================== */
 
-/* Main content container */
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
 }
 
 /* ============================================== */
@@ -48,58 +60,33 @@ body {
 /* ============================================== */
 
 .navbar {
-  background: rgba(255, 255, 255);
-  padding: 1rem 0;
+  background: white;
+  padding: 0.75rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-/* Desktop adjustments for new wrappers */
-.nav-header {
-  display: flex;
-  align-items: center;
-}
-
-.nav-header .nav-title {
-  margin-left: 1rem;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-}
-
-/* Add spacing between nav-links and register button inside the nav-actions container. */
-.nav-actions .register-btn {
-  margin-left: 2rem;
-}
-
-.nav-title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--primary);
-  font-size: 1.75rem;
-  margin-right: 2em;
-  transition: color 0.3s ease;
-}
-
-.nav-title:hover {
-  color: var(--secondary);
+  width: 100%;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .logo-container {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--primary);
@@ -116,10 +103,36 @@ body {
   object-position: center;
 }
 
+.nav-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin: 0;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.nav-title:hover {
+  color: var(--secondary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-links a {
@@ -127,46 +140,50 @@ body {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
+  white-space: nowrap;
+  display: block;
+  padding: 0.25rem 0;
 }
-
 .nav-links a:hover {
   color: var(--secondary);
 }
 
-/* Register button styling */
 .register-btn {
   background: var(--accent);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
 }
-
 .register-btn:hover {
   transform: translateY(-2px);
+  background-color: color-mix(in srgb, var(--accent) 90%, black);
 }
 
 /* ============================================== */
-/* HERO SECTION (UPDATED)                         */
+/* HERO SECTION                                   */
 /* ============================================== */
 
 .hero {
-  padding: 4rem 0 8rem;
+  padding: 4rem 0 6rem;
   color: white;
   text-align: center;
   position: relative;
-  /* Removed background properties as image is now handled by .hero-background */
-  min-height: 67vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
-  justify-content: center; /* Added for centering content */
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* New hero-background styling for the Next.js Image component */
 .hero-background {
   position: absolute;
   top: 0;
@@ -175,16 +192,11 @@ body {
   bottom: 0;
   z-index: 0;
 }
-
-/* Override inline image styles in .hero-background */
 .hero-background img {
   object-fit: cover;
-  overflow: hidden;
-  object-position: 50% 51% !important;
-  overflow: hidden;
+  object-position: center;
 }
 
-/* Dark overlay for text readability */
 .hero::before {
   content: '';
   position: absolute;
@@ -192,22 +204,25 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
 .hero-container {
   position: relative;
   z-index: 2;
+  width: 100%;
+  padding: 0 1.5rem;
 }
 
 .hero h1 {
   font-weight: 800;
-  font-size: 3rem;
-  margin-bottom: 2rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin-bottom: 1.5rem;
   line-height: 1.2;
   max-width: 800px;
-  margin: 0 auto 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-date {
@@ -215,8 +230,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 1.25rem;
-  margin-bottom: 3rem;
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  margin-bottom: 2rem;
 }
 
 /* ============================================== */
@@ -224,137 +239,140 @@ body {
 /* ============================================== */
 
 .section {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 h2 {
   font-weight: 800;
-  font-size: 2rem;
-  color: var(--primary); /* This is the color we want for links */
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--primary);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
+h3 {
+  font-weight: 600;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+
 .content-card,
 .day-card,
 .venue-card {
   background: white;
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 2rem);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  margin-bottom: 2rem;
 }
 
 .objectives-list {
   list-style: none;
+  padding-left: 0;
 }
-
 .objectives-list li {
   padding: 1rem;
   margin: 0.5rem 0;
   background: var(--light);
-  border-left: 3px solid var(--secondary);
+  border-left: 4px solid var(--secondary);
+  border-radius: 4px;
 }
 
 /* ============================================== */
-/* SCHEDULE COMPONENTS                            */
+/* SCHEDULE COMPONENTS (Desktop Defaults)         */
 /* ============================================== */
 
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
 }
 
 .timeline {
   list-style: none;
+  padding-left: 0;
 }
 
-/* Style for each main event item in the timeline */
 .timeline li {
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
   display: grid;
-  grid-template-columns: 100px 1fr; /* Time column | Title/Details column */
-  gap: 1rem;
-  align-items: start; /* Align items to the start of the grid cell vertically */
+  grid-template-columns: 100px 1fr; /* Desktop: Fixed time column */
+  gap: 1rem 1.5rem;
+  align-items: baseline;
 }
-
-/* Remove border from the last timeline item in each day card */
 .day-card .timeline li:last-child {
   border-bottom: none;
 }
 
-/* Style for the time element */
 .timeline time {
   color: var(--secondary);
-  font-weight: 500;
-  padding-top: 0.1em; /* Optional: slight alignment adjustment */
-  white-space: nowrap; /* Prevent time from wrapping */
+  font-weight: 600;
+  padding-top: 0;
+  white-space: nowrap;
+  font-size: 0.95em;
 }
 
-/* Style for the div containing the event title and optional details */
 .timeline li > div {
-  /* This div ensures title and details stay in the second grid column */
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* --- Styles for Optional Event Details --- */
-
-/* Style for the optional details/bullet points list (ul) */
+/* Event Details (Desktop Defaults) */
 .event-details {
-  list-style: disc; /* Use standard bullet points */
-  margin-top: 0.75em; /* Space between event title and details list */
-  margin-left: 1.2rem; /* Indentation for the bullets */
-  padding-left: 0.8rem; /* Optional additional padding */
-  font-size: 0.95em; /* Make details slightly smaller than the title */
-  color: #444; /* Slightly muted text color */
-  font-weight: 400; /* Normal font weight */
-  line-height: 1.5; /* Adjust line height within details */
+  list-style: disc;
+  margin-top: 0.75em;
+  margin-left: 1.2rem;
+  padding-left: 0.8rem;
+  font-size: 0.95em;
+  color: #333;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-/* Style for individual detail points (list items within the details list) */
 .event-details li {
-  padding: 0.15rem 0; /* Small vertical spacing between points */
-  border-bottom: none; /* IMPORTANT: Override the border inherited from the parent .timeline li */
-  /* Reset any potentially inherited grid styles */
-  display: list-item; /* Ensure it behaves like a normal list item */
+  padding: 0.15rem 0;
+  border-bottom: none;
+  display: list-item;
   grid-template-columns: none;
   gap: 0;
-  align-items: initial; /* Reset alignment */
-  margin-bottom: 0.5em; /* Add space between individual bullet points (the <li>s) */
+  align-items: initial;
+  margin-bottom: 0.75em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* Target <p> tags generated by ReactMarkdown *inside* each detail list item */
-/* This overrides the * { margin: 0; } reset */
 .event-details li p {
-  margin-bottom: 1em; /* Adjust '1em' as needed for desired spacing between paragraphs */
-  margin-top: 0; /* Ensure no extra top margin */
+  margin-bottom: 1em; /* Desktop paragraph spacing */
+  margin-top: 0;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
-
-/* Remove margin from the *last* paragraph within a bullet point's content */
-/* This prevents extra space at the very end of the bullet point text */
 .event-details li p:last-child {
   margin-bottom: 0;
 }
 
-/* --- START: LINK STYLING --- */
-/* Style links within event details */
+/* Link Styling within event details */
 .timeline .event-details li a {
-  color: var(--primary); /* Use the primary color variable */
-  font-weight: 500; /* Optional: Make links slightly bolder */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.2s ease; /* Smooth color transition on hover */
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none; /* No underline */
+  transition: color 0.2s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
-
-/* Style links on hover */
 .timeline .event-details li a:hover {
-  color: var(--secondary); /* Use secondary color on hover (like nav links) */
-  /* Or darken primary: color: color-mix(in srgb, var(--primary) 80%, black); */
-  text-decoration: none; /* Ensure underline doesn't reappear on hover */
+  color: var(--secondary);
+  text-decoration: underline; /* Underline on hover */
 }
-/* --- END: LINK STYLING --- */
 
 /* ============================================== */
 /* VENUE SECTION                                  */
@@ -367,8 +385,8 @@ h2 {
   border-radius: 8px;
   overflow: hidden;
   margin-top: 1.5rem;
+  border: 1px solid #ddd;
 }
-
 .map-container iframe {
   position: absolute;
   top: 0;
@@ -384,19 +402,20 @@ h2 {
 
 .footer {
   background: var(--primary);
-  color: white;
+  color: var(--light);
   text-align: center;
-  padding: 2rem 0;
+  padding: 2.5rem 1.5rem;
   margin-top: 4rem;
+  font-size: 0.9em;
 }
-
 .footer a {
   color: inherit;
+  text-decoration: underline;
   transition: opacity 0.2s ease;
 }
-
 .footer a:hover {
-  opacity: 0.9;
+  opacity: 0.8;
+  text-decoration: none;
 }
 
 /* ============================================== */
@@ -404,50 +423,43 @@ h2 {
 /* ============================================== */
 
 .registration-form {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.email-input {
-  padding: 0.5rem;
-  border: 1px solid var(--secondary);
-  border-radius: 4px;
-  width: 200px;
-}
-
-.subscribe-btn {
-  background: var(--accent);
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  display: none;
 }
 
 .hero-registration {
   max-width: 500px;
   margin: 2rem auto 0;
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 .hero-email-input {
-  flex: 1;
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
+  flex: 1 1 200px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 1rem;
+  min-width: 180px;
 }
-
 .hero-subscribe-btn {
   background: var(--light);
   color: var(--primary);
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.2s,
+    color 0.2s;
+  flex-shrink: 0;
+}
+.hero-subscribe-btn:hover {
+  transform: translateY(-1px);
+  background-color: var(--secondary);
+  color: white;
 }
 
 /* ============================================== */
@@ -455,145 +467,175 @@ h2 {
 /* ============================================== */
 
 @media (max-width: 768px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h2 svg {
-    width: 1.25em;
-    height: 1.25em;
-    flex-shrink: 0;
-  }
-
-  .nav-title {
-    font-size: 1.2rem;
-    margin-right: 0;
-    margin-bottom: 0.2rem;
+  /* --- Inherited Mobile Styles (Nav, Hero, etc.) --- */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .nav-container {
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .hero {
-    padding: 4rem 0 6rem;
-    min-height: 50vh;
-    justify-content: center;
-  }
-
-  .hero h1 {
-    font-size: 2.25rem;
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
-    line-height: 1.3;
-  }
-
-  .schedule-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Adjust timeline grid for smaller screens if needed */
-  .timeline li {
-    grid-template-columns: 80px 1fr; /* Slightly less space for time */
+    align-items: center;
     gap: 0.75rem;
   }
-
+  .nav-header {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .nav-links {
+    justify-content: center;
+    gap: 1rem 1.5rem;
+  }
+  .nav-actions .register-btn {
+    margin-left: 0;
+    padding: 0.5rem 1rem;
+  }
+  .hero {
+    padding: 3rem 0 5rem;
+    min-height: 45vh;
+  }
+  .hero h1 {
+    max-width: 90%;
+  }
   .hero-registration {
     flex-direction: column;
+    align-items: stretch;
+    width: 90%;
+    max-width: 400px;
+  }
+  .schedule-grid {
+    grid-template-columns: 1fr; /* Ensure single column layout */
   }
 
-  .registration-form {
-    display: none; /* Hides the non-hero form */
+  /* --- START: Targeted Mobile Schedule Fixes (768px) --- */
+  .timeline li {
+    /* Flexible time column using 'auto' */
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 1rem; /* Adjust row/column gap */
+    align-items: flex-start; /* Align items to top */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
-  .nav-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    width: 100%; /* Ensure header takes full width */
-    justify-content: center; /* Center logo and title */
+  .timeline time {
+    white-space: nowrap;
+    font-size: 0.9em;
+    padding-top: 0.1em; /* Tiny adjustment if needed */
   }
 
-  .nav-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; /* Center actions below header */
-    gap: 1rem;
-    width: 100%; /* Take full width */
-    margin-top: 0.5rem; /* Space between header and actions */
+  .timeline li > div {
+    /* Ensure content wrapping */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
 
-  .nav-links {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    list-style: none;
-    gap: 1.5rem; /* Adjust gap for smaller screens */
-    justify-content: center; /* Center nav links */
-    flex-wrap: wrap; /* Allow wrapping */
+  .event-details {
+    margin-left: 0.5rem; /* Reduce indentation */
+    padding-left: 1rem; /* Keep padding for bullet */
+    font-size: 0.9em;
   }
 
-  .nav-actions .register-btn {
-    margin-left: 0; /* Remove left margin on mobile */
+  .event-details li {
+    margin-bottom: 0.5em;
+    /* Ensure list items allow wrapping */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
+
+  .event-details li p,
+  .event-details li a {
+    /* Ensure paragraphs and links inside details wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .event-details li p {
+    margin-bottom: 0.75em; /* Adjust paragraph spacing for mobile */
+  }
+  /* --- END: Targeted Mobile Schedule Fixes (768px) --- */
 }
 
-/* ============================================== */
-/* RESPONSIVE MEDIA QUERIES FOR VERY SMALL SCREENS  */
-/* ============================================== */
-
 @media (max-width: 480px) {
+  /* --- Inherited Mobile Styles (Nav, Hero, etc.) --- */
+  body {
+    line-height: 1.5;
+  }
   .container {
-    padding: 0 1rem; /* Slightly less padding */
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
-
-  .nav-header {
-    /* Adjust gap or specific element sizes if needed */
+  .nav-title {
+    font-size: 1.3rem;
   }
-
   .nav-actions {
-    flex-direction: column; /* Stack actions vertically */
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    align-items: stretch; /* Make items fill width */
   }
-
   .nav-links {
-    gap: 1rem; /* Reduce gap further */
-    justify-content: center;
+    gap: 0.5rem 1rem;
   }
-
-  .nav-actions .register-btn {
-    width: 100%; /* Make button full width */
+  .register-btn {
+    width: 80%;
+    max-width: 250px;
     text-align: center;
+    padding: 0.7rem 1rem;
   }
-
-  .hero h1 {
-    font-size: 1.8rem; /* Further reduce hero title size */
+  .hero {
+    padding: 2.5rem 0 4rem;
   }
-
   .hero-date {
-    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .content-card,
+  .day-card,
+  .venue-card {
+    padding: 1.25rem;
   }
 
-  .hero-registration {
-    padding: 0 1rem; /* Add padding to contain elements */
-  }
-
+  /* --- START: Targeted Mobile Schedule Fixes (480px) --- */
   .timeline li {
-    grid-template-columns: 65px 1fr; /* Even less space for time */
-    gap: 0.5rem;
+    /* Keep flexible time column, reduce gap further */
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 0.75rem;
+    align-items: flex-start;
   }
 
-  /* Reduce bullet point indentation on smallest screens */
+  .timeline time {
+    font-size: 0.85em; /* Even smaller time */
+  }
+
+  .timeline li > div {
+    font-size: 0.95em; /* Slightly smaller title */
+    /* Wrapping rules inherited */
+  }
+
   .event-details {
-    margin-left: 0.8rem;
-    padding-left: 0.5rem;
+    margin-left: 0.25rem; /* Minimal indentation */
+    padding-left: 1rem; /* Keep space for bullet */
+    font-size: 0.85em; /* Smaller details text */
   }
 
-  /* Ensure paragraph spacing is still reasonable on small screens */
-  .event-details li p {
-    margin-bottom: 0.8em; /* Slightly reduce space if needed */
+  .event-details li {
+    margin-bottom: 0.4em;
+    /* Wrapping rules inherited */
   }
+
+  .event-details li p {
+    margin-bottom: 0.5em; /* Reduce space between paragraphs */
+    /* Wrapping rules inherited */
+  }
+  /* --- END: Targeted Mobile Schedule Fixes (480px) --- */
 }
