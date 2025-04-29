@@ -3,6 +3,7 @@
 import { ScheduleSection } from '@/payload-types' // Assuming this type includes the 'details' field after generation
 import { FaClock } from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm' // --- IMPORT remark-gfm ---
 
 // --- Type Definitions ---
 // It's best if these types come directly from your generated Payload types.
@@ -41,14 +42,19 @@ const TimelineItem = ({ time, title, details }: TimelineItemProps) => (
       {/* --- Start: Conditional Rendering for Details --- */}
       {details && details.length > 0 && (
         <ul className="event-details">
-          {details.map((detail) => (
-            // Use detail.id as key if available, otherwise fallback to point
-            <li key={detail.id || detail.point}>
-              {/* Use ReactMarkdown to render the point content */}
-              {/* Ensure detail.point is a string before passing */}
-              {typeof detail.point === 'string' && <ReactMarkdown>{detail.point}</ReactMarkdown>}
-            </li>
-          ))}
+          {details.map((detail) => {
+            // Return the JSX for each detail point
+            return (
+              <li key={detail.id || detail.point}>
+                {/* Use ReactMarkdown to render the point content */}
+                {/* Ensure detail.point is a string before passing */}
+                {typeof detail.point === 'string' && (
+                  // --- ADD remarkPlugins PROP HERE ---
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{detail.point}</ReactMarkdown>
+                )}
+              </li>
+            )
+          })}
         </ul>
       )}
       {/* --- End: Conditional Rendering for Details --- */}
@@ -89,7 +95,8 @@ export function Schedule({ data }: { data: ScheduleSection }) {
           {days.map((day, index) => {
             // Ensure day object and its properties exist
             const date = day.date || `Day ${index + 1}`
-            const events = (day.events as EventType[]) || [] // Cast to ensure type safety if needed
+            // Cast to ensure type safety if needed, retrieve events or default to empty array
+            const events = (day.events as EventType[] | undefined | null) || []
             return <DayCard key={day.id || index} date={date} events={events} /> // Use day.id if available
           })}
         </div>
